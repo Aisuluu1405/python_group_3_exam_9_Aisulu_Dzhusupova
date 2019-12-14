@@ -25,12 +25,11 @@
       <li class="nav-item ml-3 mr-3">
         <a class="nav-link font-weight-bolder" href="{% url 'webapp:index' %}">Главная</a>
       </li>
+    {% if request.user.is_authenticated %}
       <li class="nav-item ml-3 mr-3">
         <a class="nav-link font-weight-bolder" href="{% url 'webapp:image_create'%}">Добавить фото</a>
       </li>
-{#      <li class="nav-item ml-3 mr-3">#}
-{#        <a class="nav-link font-weight-bolder" href="{% url 'webapp:image_edit' image.pk%}">Редактировать фото</a>#}
-{#      </li>#}
+    {%  endif %}
     {% block menu %} {% endblock %}
         {% if request.user.is_authenticated %}
             <li class="nav-item ml-5 mr-3"><a class="nav-link font-weight-bolder text-danger">Hello, {{ request.user }}!</a></li>

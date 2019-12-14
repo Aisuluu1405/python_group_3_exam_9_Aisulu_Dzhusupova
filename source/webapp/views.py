@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -24,8 +24,10 @@ class ImageCreateView(LoginRequiredMixin, CreateView):
     model = Image
     template_name = 'create.html'
     form_class = PhotoForm
-    # permission_required = 'webapp.add_services'
-    # permission_denied_message = "Доступ запрещен!"
+
+    def form_valid(self, form):
+        self.object = self.model.objects.create(author=self.request.user, **form.cleaned_data)
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('webapp:image_detail', kwargs={'pk': self.object.pk})

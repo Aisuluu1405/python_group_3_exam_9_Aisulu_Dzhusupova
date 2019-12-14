@@ -1,3 +1,21 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: rgba(153, 222, 255, 0.83);
+    color: #222222;
+    margin-top: 20px;
+
+}
+.container {
+    max-width: 950px;
+    width: 90%;
+    margin: 0 auto;
+}
+.pre{
+    white-space: pre-wrap;
+    font-size: 25px;
+}
+
+
 .login_logout{
     float: right;
 }
