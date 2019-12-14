@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}Просмотр фото{% endblock %}
 {% block menu %}
     {% if perms.webapp.change_image %}
         <li class="nav-item"><a href="" class="nav-link">Редактировать фото</a></li>
@@ -19,6 +19,32 @@
         <p>Автор фото: <b>{{image.author}}</b></p>
         <p>Количество лайков: <b>{{image.like}}</b></p>
         <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
+{#                {% if perms.webapp.change_image %}#}
+                        <a href="{% url 'webapp:image_edit' image.pk %}" class="btn btn-primary">Редактировать</a>
+{#                    {% endif %}#}
+{#                {% if perms.webapp.change_image %}#}
+                        <a href="{% url 'webapp:image_delete' image.pk %}" class="btn btn-primary">Удалить</a>
+{#                    {% endif %}#}
+<hr>
+                <h3><b>Комментарии к фотографии:</b></h3>
+    <div class="comment-list">
+        {% for comment in image.comments.all %}
+            <div class="comment">
+            <div class="pre text-danger">{{ comment.text }}</div>
+                <p class="mt-4">Комментарий от: {{ comment.author_comment }} ( {{ comment.create_comment|date:'d.m.Y H:i:s' }} )</p>
+                <hr>
+
+{#            {% if image.author == request.user or request.user.is_superuser %}#}
+                <p class="comment-links">
+{#                    <a href="{% url 'webapp:comment_update' comment.pk %}">Edit</a>#}
+{#                    <a href="{% url 'webapp:comment_delete' comment.pk %}">Delete</a>#}
+                </p>
+{#            {% endif %}#}
+            </div>
+        {% empty %}
+            <p>Комментариев еще нет.</p>
+        {% endfor %}
+{#    </div>#}
 {#    <div class="comment-list">#}
 {#        {% for comment in comments %}#}
 {#            <div class="comment">#}
