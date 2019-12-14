@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+    {% if perms.webapp.change_image %}
+        <li class="nav-item"><a href="" class="nav-link">Редактировать фото</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_image %}
+        <li class="nav-item"><a href= "" class="nav-link">Удалить фото</a></li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1> Мое фото</h1>
+        <div class="row">
+            <div class="col col-12 col-sm-10 col-md-8 col-lg-6 m-auto">
+                <img src="{{ image.photo.url }}" class="card-img-top" alt="{{ image.note }}">
+        <p class="card-text font-weight-bold">{{ image.note }}</p>
+        <p>Автор фото: <b>{{image.author}}</b></p>
+        <p>Количество лайков: <b>{{image.like}}</b></p>
+        <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
+{#    <div class="comment-list">#}
+{#        {% for comment in comments %}#}
+{#            <div class="comment">#}
+{#                <p><a href="{% url 'accounts:user_detail' review.author.pk %}"> <b>{{ forloop.counter }}. {{ review.author.username }}</b></a></p>#}
+{#                <p><b>Email: </b>{{ review.author.email }}</p>#}
+{#                <div class="pre"><b>Отзыв: </b> {{ review.text }}</div>#}
+{#                <div><b>Оценка:</b> {{ review.rating }} из возможных 5</div>#}
+{##}
+{#             {% if review.author == request.user%}#}
+{#                <p class="review-links">#}
+{#                    {% if perms.webapp.change_review %}#}
+{#                        <a href="{% url 'webapp:review_update' review.pk %}" class="btn btn-primary">Редактировать</a>#}
+{#                    {% endif %}#}
+{#                    {% if perms.webapp.delete_review %}#}
+{#                        <a href="{% url 'webapp:review_delete' review.pk %}" class="btn btn-primary">Удалить</a>#}
+{#                    {% endif %}#}
+{#                </p>#}
+{#            {% endif %}#}
+            <hr>
+
+{#            </div>#}
+            </div>
+{#        {% empty %}#}
+{#            <p>Нет еще отзывов.</p>#}
+{#        {% endfor %}#}
+    </div>
+
+{#        {% if request.user.is_authenticated %}#}
+{#            <p><a href="{% url "webapp:review_create" services.pk %}" class="btn btn-primary">Добавить отзыв</a></p>#}
+{#    {% endif %}#}
+    </div>
+{% endblock %}

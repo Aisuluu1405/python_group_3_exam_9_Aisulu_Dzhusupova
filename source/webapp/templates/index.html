@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Галерея</h1>
+    <hr/>
+    {%  for image in images_list %}
+ <div class="card text-center m-5" style="width: 30rem;">
+  <div class="card-body">
+    <h5 class="card-title">Мои фото!</h5>
+        <img src="{{ image.photo.url }}" class="card-img-top" alt="{{ image.note }}">
+        <p class="card-text font-weight-bold">{{ image.note }}</p>
+        <p>Автор фото: <b>{{image.author}}</b></p>
+        <p>Количество лайков: <b>{{image.like}}</b></p>
+        <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
+      <a href="{% url 'webapp:image_detail' image.pk %}" class="btn btn-outline-dark ml-3">Подробнее</a>
+  </div>
+</div>
+    {% endfor %}
+
+{% endblock %}
