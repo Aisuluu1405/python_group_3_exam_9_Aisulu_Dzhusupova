@@ -20,7 +20,6 @@ class ImageView(DetailView):
     context_object_name = 'image'
 
 
-
 class ImageCreateView(LoginRequiredMixin, CreateView):
     model = Image
     template_name = 'create.html'
@@ -41,11 +40,6 @@ class ImageEditView(PermissionRequiredMixin, UpdateView):
     context_object_name = 'image'
     permission_required = 'webapp.change_image'
 
-
-    # def form_valid(self, form):
-    #     self.object.create(author=self.request.user, **form.cleaned_data)
-    #     return redirect('webapp:index')
-    #
     def get_success_url(self):
         return reverse('webapp:image_detail', kwargs={'pk': self.object.pk})
 
