@@ -33,17 +33,11 @@
                         <a href="#" class="btn btn-primary">Редактировать</a>
                     {% endif %}
                     {% if perms.webapp.delete_comment%}
-                        <a href="#" class="btn btn-primary">Удалить</a>
+                        <a href="#" class="btn btn-primary" id="delete_comment" onclick="deleteComment()">Удалить</a>
                     {% endif %}
                 </p>
             {% endif %}
 
-{#            {% if image.author_comment == request.user %}#}
-{#                <p class="comment-links">#}
-{#                    <a href="{% url 'webapp:comment_update' comment.pk %}">Edit</a>#}
-{#                    <a href="{% url 'webapp:comment_delete' comment.pk %}">Delete</a>#}
-{#                </p>#}
-{#            {% endif %}#}
             </div>
      {% empty %}
             <p>Комментариев еще нет.</p>
@@ -53,43 +47,15 @@
     <h5><b>Добавить новый комментарий:</b></h5>
         <form action="#" method="POST" id="add_comment">
     {% csrf_token %}
-        <div>
-            <input type="text" id="image_comment" style="width: 70%;">
+        <input type="hidden" id="image" value="{{ image.pk }}" style="width: 60%;">
+        <div class="photo">
+            <input type="text" id="image_comment" style="width: 60%;">
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Добавить</button>
+        <button type="submit" class="btn btn-primary mt-3" id="add_link">Добавить</button>
     </form>
     {% endif %}
-
-{#    </div>#}
-{#    <div class="comment-list">#}
-{#        {% for comment in comments %}#}
-{#            <div class="comment">#}
-{#                <p><a href="{% url 'accounts:user_detail' review.author.pk %}"> <b>{{ forloop.counter }}. {{ review.author.username }}</b></a></p>#}
-{#                <p><b>Email: </b>{{ review.author.email }}</p>#}
-{#                <div class="pre"><b>Отзыв: </b> {{ review.text }}</div>#}
-{#                <div><b>Оценка:</b> {{ review.rating }} из возможных 5</div>#}
-{##}
-{#             {% if review.author == request.user%}#}
-{#                <p class="review-links">#}
-{#                    {% if perms.webapp.change_review %}#}
-{#                        <a href="{% url 'webapp:review_update' review.pk %}" class="btn btn-primary">Редактировать</a>#}
-{#                    {% endif %}#}
-{#                    {% if perms.webapp.delete_review %}#}
-{#                        <a href="{% url 'webapp:review_delete' review.pk %}" class="btn btn-primary">Удалить</a>#}
-{#                    {% endif %}#}
-{#                </p>#}
-{#            {% endif %}#}
             <hr>
-
-{#            </div>#}
             </div>
-{#        {% empty %}#}
-{#            <p>Нет еще отзывов.</p>#}
-{#        {% endfor %}#}
     </div>
-
-{#        {% if request.user.is_authenticated %}#}
-{#            <p><a href="{% url "webapp:review_create" services.pk %}" class="btn btn-primary">Добавить отзыв</a></p>#}
-{#    {% endif %}#}
     </div>
 {% endblock %}

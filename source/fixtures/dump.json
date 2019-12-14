@@ -1,0 +1,150 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$sGYTlXmXwbeC$/p741s25E/rIzDsALov3rWFLrjY6sTTUNYMiHrn6unk=",
+    "last_login": "2019-12-14T09:16:25.848Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-12-13T19:03:38.360Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$gqAXbYCPgQeL$dgHUvAzkGv6Rk956voT4IGcMr5Msv2vZTtAFJYmFmNY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Nadinadocha",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-12-14T10:23:06.893Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "webapp.like",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "photo": 3
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 1,
+  "fields": {
+    "text": "\u041a\u0440\u0430\u0441\u043e\u0442\u0430!",
+    "photo": 1,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T06:46:36.460Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 2,
+  "fields": {
+    "text": "\u0421\u0423\u041f\u0415\u0420!!!!",
+    "photo": 1,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T08:50:11.771Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 3,
+  "fields": {
+    "text": "\u0418\u043d\u0442\u0435\u0440\u0435\u0441\u043d\u043e \u043a\u0430\u043a\u043e\u0435 \u0442\u0430\u043c \u043b\u0435\u0442\u043e?",
+    "photo": 1,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T11:57:58.577Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 4,
+  "fields": {
+    "text": "\u041a\u0430\u043a \u0436\u0435 \u0442\u0430\u043c \u0445\u043e\u0440\u043e\u0448\u043e!",
+    "photo": 1,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T13:08:46.052Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 5,
+  "fields": {
+    "text": "\u041d\u0430\u0434\u043e \u0441\u0440\u043e\u0447\u043d\u043e \u0442\u0443\u0434\u0430!",
+    "photo": 4,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T13:55:05.552Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 7,
+  "fields": {
+    "text": "\u0428\u0438\u043a\u0430\u0440\u043d\u043e!!!!!!!",
+    "photo": 2,
+    "author_comment": 1,
+    "create_comment": "2019-12-14T14:02:11.428Z"
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 1,
+  "fields": {
+    "photo": "user_photo/photo1.jpeg",
+    "note": "\u0421\u0438\u043d\u0433\u0430\u043f\u0443\u0440 \u0434\u0435\u043a\u0430\u0431\u0440\u044c 2019",
+    "like": 0,
+    "create": "2019-12-14T06:45:08.828Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 2,
+  "fields": {
+    "photo": "user_photo/photo2.jpeg",
+    "note": "\u041c\u043e\u044f \u043c\u0435\u0447\u0442\u0430! \u041a\u0440\u0430\u0441\u043e\u0442\u0430!",
+    "like": 0,
+    "create": "2019-12-14T06:45:39.092Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 3,
+  "fields": {
+    "photo": "user_photo/photo5.jpeg",
+    "note": "\u041d\u0430\u0431\u0435\u0440\u0435\u0436\u043d\u0430\u044f \u041c\u0430\u0439\u0430\u043c\u0438!",
+    "like": 0,
+    "create": "2019-12-14T06:46:05.907Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.image",
+  "pk": 4,
+  "fields": {
+    "photo": "user_photo/photo4.jpeg",
+    "note": "\u0425\u043e\u0447\u0443 \u0442\u0443\u0434\u0430!!!!!!",
+    "like": 0,
+    "create": "2019-12-14T08:26:56.978Z",
+    "author": 1
+  }
+}
+]
