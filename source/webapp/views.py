@@ -20,6 +20,7 @@ class ImageView(DetailView):
     context_object_name = 'image'
 
 
+
 class ImageCreateView(LoginRequiredMixin, CreateView):
     model = Image
     template_name = 'create.html'

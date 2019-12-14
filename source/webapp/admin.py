@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Image, Comment
+from webapp.models import Image, Comment, Like
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -18,4 +18,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Comment, CommentAdmin)
-
+admin.site.register(Like)
