@@ -64,35 +64,13 @@ function addComment(text, photo ) {
 }
 commentForm();
 
-function deleteComment() {
+function deleteComment(id) {
     $.ajax({
     url: 'http://localhost:8000/api/comments/' +id,
     method: 'delete',
-    headers: {'Authorization': 'Token ' + localStorage.getItem('apiToken')},
+    headers: {'X-CSRFToken': getCookie('csrftoken')},
     dataType: 'json',
     success: function(response, status){console.log('Ok, comment delete.');},
     error: function(response, status){console.log(response);}
 });
 }
-
-// function deleteLink() {
-//     let linkDelete = $("#delete_comment");
-//     linkDelete.on('click', function (event) {
-//         event.preventDefault();
-//         console.log('ok')
-//         commentDelete(id)
-//     });
-//
-// }
-// function commentDelete(id){
-//     let request = makeRequest('comments/' + id, 'delete', true);
-//     request.done(function(id)
-//         {console.log('Комментарий удален!')}
-//
-//     ).fail(function (response, status, message){
-//         console.log('Комментарий не удален!');
-//         console.log(response.responseText);
-//     });
-// }
-// deleteLink();
-

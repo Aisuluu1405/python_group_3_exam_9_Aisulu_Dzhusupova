@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-primary">Редактировать</a>
                     {% endif %}
                     {% if perms.webapp.delete_comment%}
-                        <a href="#" class="btn btn-primary" id="delete_comment" onclick="deleteComment()">Удалить</a>
+                        <a href="#" class="btn btn-primary" id="delete_comment" onclick="deleteComment({{ comment.pk }})">Удалить</a>
                     {% endif %}
                 </p>
             {% endif %}

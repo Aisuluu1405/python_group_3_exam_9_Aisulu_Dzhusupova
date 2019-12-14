@@ -9,8 +9,6 @@ class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
 
 
-
-
 class LikeViewSet(ModelViewSet):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
