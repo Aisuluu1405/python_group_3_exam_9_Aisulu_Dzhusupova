@@ -31,8 +31,11 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, related_name='like_user', on_delete=models.CASCADE, verbose_name='Пользователь')
-    photo = models.ForeignKey('webapp.Image', related_name='like_photo', on_delete=models.CASCADE, verbose_name='Фото')
+    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE, verbose_name='Пользователь')
+    photo = models.ForeignKey('webapp.Image', related_name='liks', on_delete=models.CASCADE, verbose_name='Фото')
 
+    def __str__(self):
+        return f'{self.author.username} | {self.photo.note}'
 
-
+    class Meta:
+        unique_together = ('photo', 'author')

@@ -2,7 +2,14 @@
 {% load static %}
 {% block title %}Просмотр фото{% endblock %}
 {% block menu %}
+    {% if perms.webapp.change_image %}
+        <li class="nav-item ml-5 mr-3"><a class="nav-link font-weight-bolder text-info" href="{% url 'webapp:image_edit' image.pk%}">Редактировать</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_image %}
+        <li class="nav-item ml-5 mr-3"><a class="nav-link font-weight-bolder text-info" href="{% url 'webapp:image_delete' image.pk %}">Удалить</a></li>
+    {% endif %}
 {% endblock %}
+
 {% block content %}
     <div class="text-center">
         <h1> Мое фото</h1>
@@ -13,12 +20,8 @@
         <p>Автор фото: <b>{{image.author}}</b></p>
         <p>Количество лайков: <b>{{image.like}}</b></p>
         <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
-                {% if perms.webapp.change_image %}
-                        <a href="{% url 'webapp:image_edit' image.pk %}" class="btn btn-primary">Редактировать</a>
-                    {% endif %}
-                {% if perms.webapp.delete_image %}
-                        <a href="{% url 'webapp:image_delete' image.pk %}" class="btn btn-primary">Удалить</a>
-                    {% endif %}
+            <p><a href=""><i class="fa fa-thumbs-up ml-3 display-4" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-thumbs-down ml-5 display-4" aria-hidden="true"></i></a></p>
                 <hr>
                 <h3><b>Комментарии к фотографии:</b></h3>
     <div class="comment-list">

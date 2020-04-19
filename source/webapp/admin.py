@@ -15,7 +15,10 @@ class CommentAdmin(admin.ModelAdmin):
     exclude = []
     readonly_fields = ['create_comment']
 
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'author', 'photo')
+
 
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(Like)
+admin.site.register(Like, LikeAdmin)
