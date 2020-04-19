@@ -8,7 +8,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'text', 'photo', 'author_comment', 'create_comment')
+        fields = ('id', 'text', 'photo', 'author_comment', 'create_comment')     #прописываю поля, которые есть у модели Comment
 
     def create(self, request):
         print('test ')

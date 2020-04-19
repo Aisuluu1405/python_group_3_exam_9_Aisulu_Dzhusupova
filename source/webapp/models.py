@@ -31,7 +31,7 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE, verbose_name='Пользователь')
+    author = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
     photo = models.ForeignKey('webapp.Image', related_name='liks', on_delete=models.CASCADE, verbose_name='Фото')
 
     def __str__(self):
