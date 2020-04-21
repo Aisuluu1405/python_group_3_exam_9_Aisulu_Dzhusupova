@@ -1,7 +1,9 @@
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from api.serializers import CommentSerializer, LikeSerializer
+from api.serializers import CommentSerializer
 
-from webapp.models import Comment, Like
+from webapp.models import Comment, Like, Image
 from rest_framework.permissions import BasePermission
 
 class IsAuthorPermission(BasePermission):            #Наследуется от BasePermission базовый класс для всех разрешений
@@ -34,7 +36,35 @@ class CommentViewSet(ModelViewSet):
             return super().get_permissions()
 
 
-class LikeViewSet(ModelViewSet):
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
+class LikeView(APIView):
+    def post(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        try:
+            photo = Image.objects.get(pk=pk)
+        except Image.DoesNotExist:
+            return Response({'error:' 'Фото не найдено'}, status=404)
+        try:
+            Like.objects.get(photo=photo, author=request.user)                 #гарантировано будет юзер
+            return Response({'error': 'Вы уже поставили лайк на это фото'}, status=400)
+        except Like.DoesNotExist:
+            Like.objects.create(photo=photo, author=request.user)          #если лайка не было , создаем лайк
+            photo.like += 1
+            photo.save()
+            return Response({'id': photo.pk, 'like': photo.like})
+
+
+class DislikeView(APIView):
+    def post(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        try:
+            photo = Image.objects.get(pk=pk)
+        except Image.DoesNotExist:
+            return Response({'error:' 'Фото не найдено'}, status=404)
+        try:
+            Like.objects.get(photo=photo, author=request.user).delete()                 #если лайк был поставлпен, меняем на dislike
+            photo.like += 1
+            photo.save()
+            return Response({'id': photo.pk, 'like': photo.like})
+        except Like.DoesNotExist:
+            return Response({'error': 'Вы еще не ставили лайк на это фото'}, status=400)
 

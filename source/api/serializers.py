@@ -18,11 +18,3 @@ class CommentSerializer(serializers.ModelSerializer):
         comment = Comment.objects.create(author_comment=user, photo=photo, text=text)
         return comment
 
-
-class LikeSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(read_only=True)
-    photo = serializers.ImageField(read_only=True)
-
-    class Meta:
-        model = Comment
-        fields = ('id', 'user', 'photo')
