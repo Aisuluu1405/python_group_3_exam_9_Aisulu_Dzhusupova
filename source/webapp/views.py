@@ -1,10 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import request
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import PhotoForm
-from webapp.models import Image
+from webapp.models import Image, Like
 
 
 class IndexView(ListView):
@@ -18,6 +19,15 @@ class ImageView(DetailView):
     model = Image
     template_name = 'detail.html'
     context_object_name = 'image'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            Like.objects.get(author= self.request.user, photo = self.object)  #self.object- текущий объект
+            context['liked']=True
+        except Like.DoesNotExist:
+            context['liked'] = False
+        return context
 
 
 class ImageCreateView(LoginRequiredMixin, CreateView):

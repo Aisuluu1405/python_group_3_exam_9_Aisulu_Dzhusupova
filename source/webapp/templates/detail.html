@@ -20,9 +20,9 @@
         <p>Автор фото: <b>{{image.author}}</b></p>
 
         <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
-            <p>Количество лайков: <b>{{image.like}}</b></p>
-            <p><a href=""><i class="fa fa-thumbs-up ml-3 display-4" aria-hidden="true"></i></a>
-                <a href=""><i class="fa fa-thumbs-down ml-5 display-4" aria-hidden="true"></i></a></p>
+            <p>Количество лайков: <span id="likes-display-{{ image.pk }}">{{image.like}}</span></p>
+            <p><a href=""><i class="like-btn fa fa-thumbs-up ml-3 display-4 {% if liked %} d-none {% endif %}" id="like-btn-{{ image.pk }}" data-id="{{ image.pk }}"></i></a>
+                <a href=""><i class="dislike-btn fa fa-thumbs-down ml-5 display-4 {% if not liked %} d-none{% endif %}" id="dislike-btn-{{ image.pk }}" data-id="{{ image.pk }}"></i></a></p>
 
 
 

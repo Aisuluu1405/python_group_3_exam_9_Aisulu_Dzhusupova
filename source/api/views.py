@@ -62,7 +62,7 @@ class DislikeView(APIView):
             return Response({'error:' 'Фото не найдено'}, status=404)
         try:
             Like.objects.get(photo=photo, author=request.user).delete()                 #если лайк был поставлпен, меняем на dislike
-            photo.like += 1
+            photo.like -= 1
             photo.save()
             return Response({'id': photo.pk, 'like': photo.like})
         except Like.DoesNotExist:
