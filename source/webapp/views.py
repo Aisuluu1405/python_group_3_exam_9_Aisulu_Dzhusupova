@@ -6,15 +6,17 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from webapp.forms import PhotoForm
 from webapp.models import Image, Like
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(ensure_csrf_cookie, name='dispatch')               # при запросах чтобы токен приходил целиком
 class IndexView(ListView):
     model = Image
     template_name = 'index.html'
     context_object_name = 'images_list'
     ordering = ['-create']
 
-
+@method_decorator(ensure_csrf_cookie, name='dispatch')              # при запросах страниц токен должен приходить целиком
 class ImageView(DetailView):
     model = Image
     template_name = 'detail.html'
