@@ -24,11 +24,12 @@ class ImageView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            Like.objects.get(author= self.request.user, photo = self.object)  #self.object- текущий объект
-            context['liked']=True
-        except Like.DoesNotExist:
-            context['liked'] = False
+        if self.request.user.is_authenticated:
+            try:
+                Like.objects.get(author= self.request.user, photo = self.object)  #self.object- текущий объект
+                context['liked']=True
+            except Like.DoesNotExist:
+                context['liked'] = False
         return context
 
 

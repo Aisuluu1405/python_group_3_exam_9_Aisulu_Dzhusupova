@@ -13,9 +13,10 @@
 {#        <p>Количество лайков: <b>{{image.like}}</b></p>#}
         <p><b>Дата создания: </b>{{ image.create| date:'d.m.Y H:i:s'}}</p>
       <p>Количество лайков: <span id="likes-display-{{ image.pk }}">{{image.like}}</span></p>
+            {%  if requset.user.is_authenticated %}
             <p><a href=""><i class="like-btn fa fa-thumbs-up ml-3 display-4" id="like-btn-{{ image.pk }}" data-id="{{ image.pk }}"></i></a>
                 <a href=""><i class="dislike-btn fa fa-thumbs-down ml-5 display-4" id="dislike-btn-{{ image.pk }}" data-id="{{ image.pk }}"></i></a></p>
-
+            {% endif %}
       <a href="{% url 'webapp:image_detail' image.pk %}" class="btn btn-outline-dark ml-3">Подробнее</a>
   </div>
 </div>
